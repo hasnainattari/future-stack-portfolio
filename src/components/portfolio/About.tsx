@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Section, Counter } from "./Section";
-import portrait from "@/assets/portrait.jpg";
+import portraitAsset from "@/assets/portrait.png.asset.json";
+const portrait = portraitAsset.url;
 import { Briefcase, GraduationCap, Sparkles } from "lucide-react";
 
 const timeline = [
@@ -19,7 +20,7 @@ const timeline = [
   {
     Icon: GraduationCap,
     title: "B.Sc. Computer Science",
-    sub: "University of Mumbai · 2017 — 2021",
+    sub: "University of Karachi · 2017 — 2021",
     body: "Graduated with distinction. Focused on distributed systems & UX.",
   },
 ];
@@ -62,7 +63,7 @@ export function About() {
             <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
               Based in
             </div>
-            <div className="mt-0.5 font-display text-sm font-semibold">Mumbai · Remote</div>
+            <div className="mt-0.5 font-display text-sm font-semibold">Karachi · Remote</div>
           </div>
         </motion.div>
 
