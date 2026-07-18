@@ -11,7 +11,7 @@ export function Footer() {
           </span>
         </div>
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Hasnain Attari. Designed & built with care.
+          © {new Date().getFullYear()} Aarav Mehta. Designed & built with care.
         </p>
         <div className="flex items-center gap-2">
           {[
