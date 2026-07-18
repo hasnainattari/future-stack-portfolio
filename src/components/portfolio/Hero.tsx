@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowRight, Download, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import portrait from "@/assets/portrait.jpg";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import portraitAsset from "@/assets/portrait.png.asset.json";
+const portrait = portraitAsset.url;
 
 const roles = ["Full Stack Developer", "React Engineer", "MERN Stack Specialist", "UI Craftsman"];
 
@@ -206,8 +207,7 @@ export function Hero() {
             {[
               { Icon: Github, label: "GitHub", href: "https://github.com" },
               { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-              { Icon: Twitter, label: "Twitter", href: "https://twitter.com" },
-              { Icon: Mail, label: "Email", href: "mailto:hi@aarav.dev" },
+            { Icon: Mail, label: "Email", href: "mailto:hasnainattari096@gmail.com" },
             ].map(({ Icon, label, href }) => (
               <a
                 key={label}
