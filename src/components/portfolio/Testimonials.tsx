@@ -7,7 +7,7 @@ const quotes = [
   {
     name: "Priya Shah",
     role: "CEO, Lumen Commerce",
-    body: "Aarav rebuilt our storefront in six weeks and doubled our conversion. He’s the rare engineer who cares deeply about design.",
+    body: "Hasnain rebuilt our storefront in six weeks and doubled our conversion. He’s the rare engineer who cares deeply about design.",
   },
   {
     name: "Marcus Lee",
@@ -17,7 +17,7 @@ const quotes = [
   {
     name: "Elena Ruiz",
     role: "Product Lead, Signal",
-    body: "Motion, performance, accessibility — Aarav nailed every axis. Our best hire this year.",
+    body: "Motion, performance, accessibility — Hasnain nailed every axis. Our best hire this year.",
   },
   {
     name: "Daniel Okafor",

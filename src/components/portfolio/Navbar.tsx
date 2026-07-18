@@ -52,7 +52,7 @@ export function Navbar() {
             A
           </span>
           <span className="font-display text-sm font-semibold tracking-tight">
-            aarav<span className="text-gradient-brand">.dev</span>
+            Hasnain<span className="text-gradient-brand">.dev</span>
           </span>
         </a>
 
