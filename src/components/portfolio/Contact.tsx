@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { Section } from "./Section";
-import { Check, Github, Linkedin, Mail, MapPin, Send, Twitter } from "lucide-react";
+import { Check, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
@@ -79,20 +79,19 @@ export function Contact() {
               <span className="grid size-9 place-items-center rounded-xl glass">
                 <Mail size={14} />
               </span>
-              <a href="mailto:hi@aarav.dev" className="hover:text-foreground">hi@aarav.dev</a>
+              <a href="mailto:hasnainattari096@gmail.com" className="hover:text-foreground">hasnainattari096@gmail.com</a>
             </li>
             <li className="flex items-center gap-3">
               <span className="grid size-9 place-items-center rounded-xl glass">
                 <MapPin size={14} />
               </span>
-              Mumbai, India · Remote worldwide
+              Liyari, Karachi, Pakistan · Remote worldwide
             </li>
           </ul>
           <div className="mt-8 flex items-center gap-2">
             {[
-              { Icon: Github, href: "https://github.com", label: "GitHub" },
-              { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+              { Icon: Github, href: "https://github.com/hasnainattari", label: "GitHub" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/hasnain-the-dev/", label: "LinkedIn" },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
@@ -108,8 +107,8 @@ export function Contact() {
             <div className="grid h-full place-items-center">
               <div className="text-center">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Currently</div>
-                <div className="mt-2 font-display text-2xl font-bold text-gradient-brand">Mumbai, IN</div>
-                <div className="mt-1 text-xs text-muted-foreground">19.0760° N, 72.8777° E</div>
+                <div className="mt-2 font-display text-2xl font-bold text-gradient-brand">Karachi, PK</div>
+                <div className="mt-1 text-xs text-muted-foreground">24.8607° N, 67.0011° E</div>
               </div>
             </div>
           </div>
