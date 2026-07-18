@@ -1,4 +1,4 @@
-import { ArrowUp, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowUp, Github, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,13 +11,12 @@ export function Footer() {
           </span>
         </div>
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Aarav Mehta. Designed & built with care.
+          © {new Date().getFullYear()} Hasnain Attari. Designed & built with care.
         </p>
         <div className="flex items-center gap-2">
           {[
-            { Icon: Github, href: "https://github.com", label: "GitHub" },
-            { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-            { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+            { Icon: Github, href: "https://github.com/hasnainattari", label: "GitHub" },
+            { Icon: Linkedin, href: "https://www.linkedin.com/in/hasnain-the-dev/", label: "LinkedIn" },
           ].map(({ Icon, href, label }) => (
             <a
               key={label}
