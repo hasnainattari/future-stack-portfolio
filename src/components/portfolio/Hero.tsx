@@ -205,8 +205,8 @@ export function Hero() {
             className="mt-8 flex items-center gap-3"
           >
             {[
-              { Icon: Github, label: "GitHub", href: "https://github.com" },
-              { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+              { Icon: Github, label: "GitHub", href: "https://github.com/hasnainattari" },
+              { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/hasnain-the-dev/" },
             { Icon: Mail, label: "Email", href: "mailto:hasnainattari096@gmail.com" },
             ].map(({ Icon, label, href }) => (
               <a
