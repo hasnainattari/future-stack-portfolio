@@ -73,14 +73,14 @@ function HeroCard() {
           <div className="absolute inset-0 rounded-2xl bg-gradient-brand blur-md opacity-70" />
           <img
             src={portrait}
-            alt="Aarav Mehta portrait"
+            alt="Hasnain portrait"
             width={640}
             height={640}
             className="relative aspect-square w-full rounded-2xl object-cover"
           />
         </div>
         <div className="mt-5 space-y-1 text-center">
-          <div className="font-display text-lg font-semibold">Aarav Mehta</div>
+          <div className="font-display text-lg font-semibold">Hasnain</div>
           <div className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
             Full Stack Developer
           </div>
@@ -143,7 +143,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mt-6 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
           >
-            <span className="block text-gradient">Aarav Mehta.</span>
+            <span className="block text-gradient">Hasnain.</span>
             <span className="block text-gradient-brand animate-gradient-shift">Building the modern web.</span>
           </motion.h1>
 
