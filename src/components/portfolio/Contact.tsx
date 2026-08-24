@@ -16,27 +16,36 @@ function Field({
   label,
   name,
   type = "text",
+  placeholder,
   error,
 }: {
   label: string;
   name: string;
   type?: string;
+  placeholder?: string;
   error?: string;
 }) {
   return (
     <div>
-      <label className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+      <label
+        htmlFor={name}
+        className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground"
+      >
         {label}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
+        placeholder={placeholder}
+        aria-invalid={!!error}
         className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-neon-violet focus:ring-2 focus:ring-neon-violet/20"
       />
       {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
     </div>
   );
 }
+
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
