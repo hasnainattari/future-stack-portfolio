@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { z } from "zod";
 import { Section } from "./Section";
 import { Check, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
@@ -7,28 +7,38 @@ import { Check, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(200),
+  subject: z.string().trim().min(3, "Add a short subject").max(120),
   message: z.string().trim().min(10, "Tell me a little more").max(1000),
 });
+
 
 function Field({
   label,
   name,
   type = "text",
+  placeholder,
   error,
 }: {
   label: string;
   name: string;
   type?: string;
+  placeholder?: string;
   error?: string;
 }) {
   return (
     <div>
-      <label className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+      <label
+        htmlFor={name}
+        className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground"
+      >
         {label}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
+        placeholder={placeholder}
+        aria-invalid={!!error}
         className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-neon-violet focus:ring-2 focus:ring-neon-violet/20"
       />
       {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
@@ -36,16 +46,21 @@ function Field({
   );
 }
 
+
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "message", string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<"name" | "email" | "subject" | "message", string>>
+  >({});
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const parsed = schema.safeParse({
       name: fd.get("name"),
       email: fd.get("email"),
+      subject: fd.get("subject"),
       message: fd.get("message"),
     });
     if (!parsed.success) {
@@ -58,8 +73,12 @@ export function Contact() {
     }
     setErrors({});
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1000);
+    setTimeout(() => {
+      setStatus("sent");
+      form.reset();
+    }, 900);
   };
+
 
   return (
     <Section
@@ -114,33 +133,42 @@ export function Contact() {
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="rounded-3xl glass-strong p-8">
+        <form onSubmit={onSubmit} noValidate className="relative rounded-3xl glass-strong p-8">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <Field label="Your name" name="name" error={errors.name} />
-            <Field label="Email" name="email" type="email" error={errors.email} />
+            <Field label="Your name" name="name" placeholder="Jane Cooper" error={errors.name} />
+            <Field label="Email" name="email" type="email" placeholder="jane@company.com" error={errors.email} />
           </div>
           <div className="mt-5">
-            <label className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <Field label="Subject" name="subject" placeholder="New landing page for our SaaS" error={errors.subject} />
+          </div>
+          <div className="mt-5">
+            <label
+              htmlFor="message"
+              className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground"
+            >
               Message
             </label>
             <textarea
+              id="message"
               name="message"
               rows={6}
+              aria-invalid={!!errors.message}
               className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-neon-violet focus:ring-2 focus:ring-neon-violet/20"
               placeholder="Tell me about your project…"
             />
             {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
           </div>
 
-          <div className="mt-6 flex items-center justify-between gap-4">
+          <div className="mt-6 flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-muted-foreground">
               By submitting you agree to a friendly, spam-free follow-up.
             </p>
             <motion.button
+              whileHover={{ scale: status === "idle" ? 1.04 : 1 }}
               whileTap={{ scale: 0.96 }}
               disabled={status !== "idle"}
               type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-black shadow-glow disabled:opacity-70"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-black shadow-glow disabled:opacity-70 sm:w-auto"
             >
               {status === "sent" ? (
                 <><Check size={14} /> Sent</>
@@ -151,7 +179,56 @@ export function Contact() {
               )}
             </motion.button>
           </div>
+
+          <AnimatePresence>
+            {status === "sent" && (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                role="status"
+                aria-live="polite"
+                className="absolute inset-0 grid place-items-center rounded-3xl bg-background/85 backdrop-blur-xl"
+              >
+                <div className="px-8 text-center">
+                  <motion.span
+                    initial={{ scale: 0.4, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 16 }}
+                    className="mx-auto grid size-16 place-items-center rounded-full bg-gradient-brand text-black shadow-glow"
+                  >
+                    <Check size={26} strokeWidth={3} />
+                  </motion.span>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="mt-5 font-display text-2xl font-bold"
+                  >
+                    Message sent
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                    className="mt-2 text-sm text-muted-foreground"
+                  >
+                    Thanks for reaching out — I&rsquo;ll get back to you within a day.
+                  </motion.p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className="mt-6 rounded-full glass px-5 py-2 text-sm hover:bg-white/10"
+                  >
+                    Send another
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </form>
+
       </div>
     </Section>
   );
