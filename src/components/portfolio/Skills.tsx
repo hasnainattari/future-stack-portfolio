@@ -1,22 +1,26 @@
 import { motion } from "framer-motion";
 import { Section } from "./Section";
+import { Layout, Server, Wrench } from "lucide-react";
 
-const skills = [
-  { name: "React", level: 95, tag: "Frontend" },
-  { name: "TypeScript", level: 92, tag: "Language" },
-  { name: "Next.js", level: 90, tag: "Framework" },
-  { name: "Node.js", level: 88, tag: "Backend" },
-  { name: "Express.js", level: 86, tag: "Backend" },
-  { name: "MongoDB", level: 85, tag: "Database" },
-  { name: "Firebase", level: 80, tag: "Platform" },
-  { name: "Redux Toolkit", level: 88, tag: "State" },
-  { name: "Tailwind CSS", level: 95, tag: "Styling" },
-  { name: "SCSS", level: 82, tag: "Styling" },
-  { name: "Framer Motion", level: 90, tag: "Motion" },
-  { name: "JavaScript", level: 96, tag: "Language" },
-  { name: "Git / GitHub", level: 92, tag: "Tooling" },
-  { name: "Ant Design", level: 78, tag: "UI Kit" },
-  { name: "REST APIs", level: 90, tag: "Backend" },
+const groups = [
+  {
+    label: "Frontend",
+    Icon: Layout,
+    blurb: "Pixel-accurate, accessible interfaces with motion that feels alive.",
+    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion", "Redux Toolkit"],
+  },
+  {
+    label: "Backend",
+    Icon: Server,
+    blurb: "Reliable APIs, clean data models and auth that scales quietly.",
+    items: ["Node.js", "Express", "REST APIs", "MongoDB", "Mongoose", "PostgreSQL", "JWT Auth", "Firebase"],
+  },
+  {
+    label: "Design & Tools",
+    Icon: Wrench,
+    blurb: "The workflow that keeps shipping fast without breaking things.",
+    items: ["Figma", "Git", "GitHub", "VS Code", "Postman", "Vercel", "Vite", "Jest"],
+  },
 ];
 
 export function Skills() {
@@ -27,37 +31,41 @@ export function Skills() {
       title={<>Tools I use to <span className="text-gradient-brand">build & ship</span></>}
       description="A modern, opinionated toolkit for building performant, delightful web products end to end."
     >
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        {skills.map((s, i) => (
-          <motion.div
-            key={s.name}
-            initial={{ opacity: 0, y: 20 }}
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {groups.map((g, i) => (
+          <motion.article
+            key={g.label}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: (i % 5) * 0.05 }}
-            whileHover={{ y: -4 }}
-            className="group relative overflow-hidden rounded-2xl glass p-4 transition-shadow hover:shadow-glow"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: i * 0.08 }}
+            whileHover={{ y: -6 }}
+            className="group relative overflow-hidden rounded-3xl glass p-7 transition-shadow hover:shadow-glow"
           >
-            <div className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <div className="absolute -inset-8 bg-gradient-brand opacity-20 blur-2xl" />
+            <div className="pointer-events-none absolute -inset-16 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <div className="size-full bg-gradient-brand opacity-15 blur-3xl" />
             </div>
-            <div className="flex items-center justify-between gap-2">
-              <div className="min-w-0 truncate font-display text-sm font-semibold">{s.name}</div>
-              <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                {s.tag}
+
+            <div className="flex items-center gap-3">
+              <span className="grid size-11 place-items-center rounded-2xl glass-strong text-neon-cyan transition-transform duration-300 group-hover:scale-110">
+                <g.Icon size={18} />
               </span>
+              <h3 className="font-display text-lg font-semibold tracking-tight">{g.label}</h3>
             </div>
-            <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/5">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${s.level}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-                className="h-full rounded-full bg-gradient-brand"
-              />
-            </div>
-            <div className="mt-2 font-mono text-[10px] text-muted-foreground">{s.level}%</div>
-          </motion.div>
+
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{g.blurb}</p>
+
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {g.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-foreground/80 transition-colors hover:border-neon-violet/40 hover:bg-white/10 hover:text-foreground"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.article>
         ))}
       </div>
     </Section>
