@@ -49,14 +49,18 @@ function Field({
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "message", string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<"name" | "email" | "subject" | "message", string>>
+  >({});
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const parsed = schema.safeParse({
       name: fd.get("name"),
       email: fd.get("email"),
+      subject: fd.get("subject"),
       message: fd.get("message"),
     });
     if (!parsed.success) {
@@ -69,8 +73,12 @@ export function Contact() {
     }
     setErrors({});
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1000);
+    setTimeout(() => {
+      setStatus("sent");
+      form.reset();
+    }, 900);
   };
+
 
   return (
     <Section
