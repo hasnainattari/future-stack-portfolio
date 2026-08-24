@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { z } from "zod";
 import { Section } from "./Section";
 import { Check, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
@@ -7,8 +7,10 @@ import { Check, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(200),
+  subject: z.string().trim().min(3, "Add a short subject").max(120),
   message: z.string().trim().min(10, "Tell me a little more").max(1000),
 });
+
 
 function Field({
   label,
