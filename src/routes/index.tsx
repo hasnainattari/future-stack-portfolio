@@ -13,8 +13,21 @@ import { Footer } from "@/components/portfolio/Footer";
 import { ScrollProgress } from "@/components/portfolio/ScrollProgress";
 import { CustomCursor } from "@/components/portfolio/CustomCursor";
 
+const TITLE = "Hasnain — Full Stack MERN Developer Portfolio";
+const DESC =
+  "Full Stack MERN developer in Karachi building fast, elegant web products with React, Node.js and MongoDB. See featured work, services and get in touch.";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -28,11 +41,13 @@ function Index() {
       <About />
       <Skills />
       <Projects />
-      <Services />
       <Experience />
+      <Services />
       <Testimonials />
+      <CTA />
       <Contact />
       <Footer />
     </main>
   );
 }
+
