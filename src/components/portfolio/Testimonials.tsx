@@ -1,30 +1,35 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Section } from "./Section";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 const quotes = [
   {
     name: "Priya Shah",
     role: "CEO, Lumen Commerce",
-    body: "Hasnain rebuilt our storefront in six weeks and doubled our conversion. He’s the rare engineer who cares deeply about design.",
+    rating: 5,
+    body: "Hasnain rebuilt our storefront in six weeks and doubled our conversion. He's the rare engineer who cares deeply about design.",
   },
   {
     name: "Marcus Lee",
     role: "CTO, Nebula CRM",
+    rating: 5,
     body: "Every PR is a masterclass. Clean architecture, thoughtful UX, and shipped ahead of schedule.",
   },
   {
     name: "Elena Ruiz",
     role: "Product Lead, Signal",
+    rating: 5,
     body: "Motion, performance, accessibility — Hasnain nailed every axis. Our best hire this year.",
   },
   {
     name: "Daniel Okafor",
     role: "Founder, Verse",
+    rating: 5,
     body: "He treated our product like his own. The result feels premium in every interaction.",
   },
 ];
+
 
 export function Testimonials() {
   const [i, setI] = useState(0);
@@ -50,11 +55,20 @@ export function Testimonials() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="font-display text-xl leading-relaxed sm:text-2xl">{q.body}</p>
+              <div
+                className="flex items-center gap-1"
+                aria-label={`${q.rating} out of 5 stars`}
+              >
+                {Array.from({ length: q.rating }).map((_, s) => (
+                  <Star key={s} size={14} className="fill-neon-cyan text-neon-cyan" />
+                ))}
+              </div>
+              <p className="mt-5 font-display text-xl leading-relaxed sm:text-2xl">{q.body}</p>
               <footer className="mt-6 flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-full bg-gradient-brand font-mono text-sm font-bold text-black">
                   {q.name.charAt(0)}
                 </div>
+
                 <div>
                   <div className="text-sm font-semibold">{q.name}</div>
                   <div className="text-xs text-muted-foreground">{q.role}</div>

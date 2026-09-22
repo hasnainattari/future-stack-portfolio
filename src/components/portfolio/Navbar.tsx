@@ -6,11 +6,12 @@ const links = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Work" },
-  { href: "#services", label: "Services" },
+  { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact" },
 ];
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,12 +50,13 @@ export function Navbar() {
       >
         <a href="#home" className="group flex items-center gap-2 pl-1">
           <span className="grid size-8 place-items-center rounded-full bg-gradient-brand text-sm font-bold text-black">
-            A
+            H
           </span>
           <span className="font-display text-sm font-semibold tracking-tight">
             Hasnain<span className="text-gradient-brand">.dev</span>
           </span>
         </a>
+
 
         <ul className="hidden items-center gap-1 md:flex">
           {links.slice(1, -1).map((l) => {
@@ -82,10 +84,11 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-105 md:inline-flex"
+            className="hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-semibold text-black transition-transform hover:scale-105 md:inline-flex"
           >
-            Hire me
+            Let&rsquo;s Talk
           </a>
+
           <button
             aria-label="Toggle menu"
             className="grid size-9 place-items-center rounded-full glass md:hidden"
