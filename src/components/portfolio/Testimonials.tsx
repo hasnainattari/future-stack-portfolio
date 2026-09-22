@@ -64,9 +64,11 @@ export function Testimonials() {
                 ))}
               </div>
               <p className="mt-5 font-display text-xl leading-relaxed sm:text-2xl">{q.body}</p>
-
+              <footer className="mt-6 flex items-center gap-3">
+                <div className="grid size-10 place-items-center rounded-full bg-gradient-brand font-mono text-sm font-bold text-black">
                   {q.name.charAt(0)}
                 </div>
+
                 <div>
                   <div className="text-sm font-semibold">{q.name}</div>
                   <div className="text-xs text-muted-foreground">{q.role}</div>
