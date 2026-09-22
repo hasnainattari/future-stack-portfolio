@@ -7,10 +7,12 @@ import { Projects } from "@/components/portfolio/Projects";
 import { Services } from "@/components/portfolio/Services";
 import { Experience } from "@/components/portfolio/Experience";
 import { Testimonials } from "@/components/portfolio/Testimonials";
+import { CTA } from "@/components/portfolio/CTA";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 import { ScrollProgress } from "@/components/portfolio/ScrollProgress";
 import { CustomCursor } from "@/components/portfolio/CustomCursor";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
