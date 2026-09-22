@@ -84,10 +84,11 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-105 md:inline-flex"
+            className="hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-semibold text-black transition-transform hover:scale-105 md:inline-flex"
           >
-            Hire me
+            Let&rsquo;s Talk
           </a>
+
           <button
             aria-label="Toggle menu"
             className="grid size-9 place-items-center rounded-full glass md:hidden"
