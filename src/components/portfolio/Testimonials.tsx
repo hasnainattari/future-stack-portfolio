@@ -55,9 +55,16 @@ export function Testimonials() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="font-display text-xl leading-relaxed sm:text-2xl">{q.body}</p>
-              <footer className="mt-6 flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-full bg-gradient-brand font-mono text-sm font-bold text-black">
+              <div
+                className="flex items-center gap-1"
+                aria-label={`${q.rating} out of 5 stars`}
+              >
+                {Array.from({ length: q.rating }).map((_, s) => (
+                  <Star key={s} size={14} className="fill-neon-cyan text-neon-cyan" />
+                ))}
+              </div>
+              <p className="mt-5 font-display text-xl leading-relaxed sm:text-2xl">{q.body}</p>
+
                   {q.name.charAt(0)}
                 </div>
                 <div>
