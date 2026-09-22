@@ -49,12 +49,13 @@ export function Navbar() {
       >
         <a href="#home" className="group flex items-center gap-2 pl-1">
           <span className="grid size-8 place-items-center rounded-full bg-gradient-brand text-sm font-bold text-black">
-            A
+            H
           </span>
           <span className="font-display text-sm font-semibold tracking-tight">
             Hasnain<span className="text-gradient-brand">.dev</span>
           </span>
         </a>
+
 
         <ul className="hidden items-center gap-1 md:flex">
           {links.slice(1, -1).map((l) => {
