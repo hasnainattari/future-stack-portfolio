@@ -6,11 +6,12 @@ const links = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Work" },
-  { href: "#services", label: "Services" },
+  { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact" },
 ];
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
